@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 35
+/svn/!svn/ver/5/trunk/smart_car_CGI
+END
+smart_car_left.c
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/5/trunk/smart_car_CGI/smart_car_left.c
+END
+smart_car_move.h
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/5/trunk/smart_car_CGI/smart_car_move.h
+END
+smart_car_right.c
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/5/trunk/smart_car_CGI/smart_car_right.c
+END
+README.txt
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/!svn/ver/5/trunk/smart_car_CGI/README.txt
+END
+smart_car_back.c
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/5/trunk/smart_car_CGI/smart_car_back.c
+END
+Makefile
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/!svn/ver/5/trunk/smart_car_CGI/Makefile
+END
+smart_car_clockwise.c
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/5/trunk/smart_car_CGI/smart_car_clockwise.c
+END
+smart_car_counterclockwise.c
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/5/trunk/smart_car_CGI/smart_car_counterclockwise.c
+END
+smart_car_stop.c
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/5/trunk/smart_car_CGI/smart_car_stop.c
+END
+smart_car_move.c
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/5/trunk/smart_car_CGI/smart_car_move.c
+END
+smart_car_front.c
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/5/trunk/smart_car_CGI/smart_car_front.c
+END

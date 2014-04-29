@@ -1,0 +1,53 @@
+This file contains any messages produced by compilers while
+running configure, to aid debugging if configure makes a mistake.
+
+configure:538: checking for gcc
+configure:615: checking whether the C compiler (arm-xilinx-linux-gnueabi-gcc  ) works
+configure:629: arm-xilinx-linux-gnueabi-gcc -o conftest    conftest.c  1>&5
+configure:649: checking whether the C compiler (arm-xilinx-linux-gnueabi-gcc  ) is a cross-compiler
+configure:654: checking whether we are using GNU C
+configure:663: arm-xilinx-linux-gnueabi-gcc -E conftest.c
+configure:681: checking how to run the C preprocessor
+configure:702: arm-xilinx-linux-gnueabi-gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:742: checking for function prototypes
+configure:765: arm-xilinx-linux-gnueabi-gcc -c -O2  conftest.c 1>&5
+configure:792: checking for stddef.h
+configure:802: arm-xilinx-linux-gnueabi-gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:828: checking for stdlib.h
+configure:838: arm-xilinx-linux-gnueabi-gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:864: checking for string.h
+configure:874: arm-xilinx-linux-gnueabi-gcc -E  conftest.c >/dev/null 2>conftest.out
+configure:900: checking for size_t
+configure:923: arm-xilinx-linux-gnueabi-gcc -c -O2  conftest.c 1>&5
+configure:994: checking for type unsigned char
+configure:1003: arm-xilinx-linux-gnueabi-gcc -c -O2  conftest.c 1>&5
+configure:1018: checking for type unsigned short
+configure:1027: arm-xilinx-linux-gnueabi-gcc -c -O2  conftest.c 1>&5
+configure:1042: checking for type void
+configure:1072: arm-xilinx-linux-gnueabi-gcc -c -O2  conftest.c 1>&5
+configure:1088: checking for working const
+configure:1142: arm-xilinx-linux-gnueabi-gcc -c -O2  conftest.c 1>&5
+configure:1163: checking for inline
+configure:1174: arm-xilinx-linux-gnueabi-gcc -c -O2  conftest.c 1>&5
+configure:1224: checking for broken incomplete types
+configure:1233: arm-xilinx-linux-gnueabi-gcc -c -O2  conftest.c 1>&5
+configure:1248: checking for short external names
+configure:1260: arm-xilinx-linux-gnueabi-gcc -o conftest -O2   conftest.c  1>&5
+configure:1275: checking to see if char is signed
+configure:1323: checking to see if right shift is signed
+configure:1375: checking to see if fopen accepts b spec
+configure:1436: checking for a BSD compatible install
+configure:1488: checking for ranlib
+configure:1650: checking libjpeg version number
+C
+ltconfig:432: arm-xilinx-linux-gnueabi-gcc -E conftest.c
+ltconfig:547: checking if arm-xilinx-linux-gnueabi-gcc PIC flag -fPIC works
+ltconfig:548: arm-xilinx-linux-gnueabi-gcc -c  -fPIC -DPIC  conftest.c 1>&5
+ltconfig:591: checking if arm-xilinx-linux-gnueabi-gcc static flag -static works
+ltconfig:592: arm-xilinx-linux-gnueabi-gcc -o conftest    -static conftest.c  1>&5
+ltconfig:624: checking for ld used by GCC
+GNU ld (Sourcery CodeBench Lite 2011.09-50) 2.21.53.20110905
+ltconfig:971: checking if global_symbol_pipe works
+ltconfig:972: arm-xilinx-linux-gnueabi-gcc -c   conftest.c 1>&5
+ltconfig:975: eval "/usr/bin/nm -B conftest.o | sed -n -e 's/^.* [ABCDGISTUW] \([_A-Za-z][_A-Za-z0-9]*\)$/\1 \1/p' > conftest.nm"
+ltconfig:1033: arm-xilinx-linux-gnueabi-gcc -o conftest  -fno-builtin   conftest.c conftestm.o 1>&5

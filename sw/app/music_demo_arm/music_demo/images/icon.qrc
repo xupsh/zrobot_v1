@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/icon">
+        <file>icon/choice.png</file>
+        <file>icon/e.png</file>
+        <file>icon/pause.png</file>
+        <file>icon/q.png</file>
+        <file>icon/r.png</file>
+        <file>icon/r_record.png</file>
+        <file>icon/r_setpath.png</file>
+        <file>icon/r_stop.png</file>
+        <file>icon/start.png</file>
+        <file>icon/stop.png</file>
+        <file>icon/w.png</file>
+    </qresource>
+</RCC>

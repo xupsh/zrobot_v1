@@ -1,0 +1,335 @@
+/****************************************************/
+/*                                                  */
+/*                  facedetection.cpp	        	    */
+/*		             writen by heroxiao               */
+/*                     	15/7/2013                   */
+/*                                                  */
+/****************************************************/
+
+#include "v4l2lib.h"
+#include "opencv2/opencv.hpp"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <assert.h>
+#include <math.h>
+#include <float.h>
+#include <limits.h>
+#include <time.h>
+#include <ctype.h>
+#include <sys/stat.h>
+#include <iostream>
+#include <sys/types.h>
+#include <sys/ipc.h>
+#include <sys/shm.h>
+#include <sys/sem.h>
+#include <sys/stat.h>
+#include <signal.h>
+#include <unistd.h>
+
+#include "calculatorORleaf.h"
+
+#define buffer_n 2
+#define W_LOCK  0
+#define R_LOCK  1
+
+using namespace std;
+using namespace cv;
+
+struct rgb_buffer
+{
+  unsigned char *buf;
+  int  semid,shmid;
+};
+
+union semun 
+{ 
+    int val; 
+    struct semid_ds *buf; 
+    unsigned short int *array; 
+    struct seminfo *__buf; 
+}; 
+
+int getsem(int semid,int num)
+{
+  struct sembuf sem_buf={num,-1,IPC_NOWAIT|SEM_UNDO};
+  return semop(semid,&sem_buf,1);   
+}
+
+int freesem(int semid,int num)
+{
+  struct sembuf sem_buf={num,1,IPC_NOWAIT|SEM_UNDO};
+  return semop(semid,&sem_buf,1);
+}
+
+int convert_yuv_to_rgb_buffer(unsigned char *yuv_buffer_pointer,unsigned char *rgb_buffer);
+void facedetection(unsigned char *rgb_buffer);
+
+/**Global variables*/
+String face_cascade_name = "haarcascade_frontalface_alt2.xml";
+CascadeClassifier face_cascade;
+
+
+int main()
+{
+  key_t key_buffer[buffer_n],key_sem[buffer_n];
+  rgb_buffer buffer[buffer_n];
+  unsigned char *yuv_buffer_pointer;
+  int index,len;
+  
+  //读取人脸识别文件
+  if( !face_cascade.load( face_cascade_name ) )
+  {
+    printf("load wrong!\n");
+	  exit(0);
+  }
+  
+  int i;
+  //获取键值
+  for(i=0;i<buffer_n;i++)
+  {
+    char tmp[30];
+    int j;
+    j=sprintf(tmp,"/tmp/buffer%d",i);
+    tmp[j]='\0';
+    key_buffer[i]=ftok(tmp,i+1);
+    j=sprintf(tmp,"/tmp/sem%d",i);
+    tmp[j]='\0';
+    key_sem[i]=ftok(tmp,i+1);
+  }
+  
+  //获取并映射共享内存
+  for(i=0;i<buffer_n;i++)
+  {
+    buffer[i].shmid=shmget(key_buffer[i],IMAGEWIDTH*IMAGEHEIGHT*3,IPC_CREAT|0666);
+    if(buffer[i].shmid<0)
+		{
+			printf("get share memory wrong!\n");
+			exit(0);
+		}
+		buffer[i].buf =(unsigned char *)shmat(buffer[i].shmid,0,0);
+		if(buffer[i].buf==NULL)
+		{
+			printf("map share memory wrong!\n");
+			exit(0);
+		}
+  }
+  
+	//获取信号量并赋初值
+	for(i=0;i<buffer_n;i++)
+	{
+	  buffer[i].semid=semget(key_sem[i],2,IPC_CREAT|0666|IPC_NOWAIT);
+	  if(buffer[i].semid<0)
+	  {
+	    printf("get sem wrong!\n");
+			exit(0);
+	  }
+	  
+	  /*
+	  union semun sem_union;
+    sem_union.val=0;
+    if (semctl(buffer[i].semid,W_LOCK,SETVAL,sem_union)==-1) 
+    {
+       printf("Sem init wrong!\n");
+       exit(1);
+    }
+    if (semctl(buffer[i].semid,R_LOCK,SETVAL,sem_union)==-1) 
+    {
+       printf("Sem init wrong!\n");
+       exit(1);
+    }
+    */
+	}
+	
+	//初始化视频设备
+	open_device();
+	if(!init_device())
+	{
+	  close_device();
+	  exit(1);
+	}
+	if(!start_capturing())
+	{
+	  close_device();
+	  exit(1);
+  }
+  
+  for(i=0;i<buffer_n;i++)
+  {
+    get_frame(&yuv_buffer_pointer,&len,&index);
+  }
+  
+  int flag;
+  while(1)
+  {
+    flag=0;
+    for(i=0;i<buffer_n;i++)
+    {
+      //获取读锁
+      if(getsem(buffer[i].semid,R_LOCK)==0)
+      {
+        unget_frame(index);
+        get_frame(&yuv_buffer_pointer,&len,&index);
+        convert_yuv_to_rgb_buffer(yuv_buffer_pointer,buffer[i].buf);
+        facedetection(buffer[i].buf);
+        //释放写锁
+        while(freesem(buffer[i].semid,W_LOCK)<0);
+        flag=1;
+      }
+    }
+    if(flag==0)
+     {        
+        usleep(300);
+     }    
+  }
+}
+
+/*
+int convert_yuv_to_rgb_buffer(unsigned char *yuv_buffer_pointer,unsigned char *rgb_buffer)
+{
+    unsigned long in, out = 0;
+    int y0, u, y1, v;
+    int r, g, b;
+    for(in = 0; in < 640 * 480 * 2; in += 4)
+    {
+        y0 = yuv_buffer_pointer[in + 0];
+        u  = yuv_buffer_pointer[in + 1];
+        y1 = yuv_buffer_pointer[in + 2];
+        v  = yuv_buffer_pointer[in + 3];
+
+        r = y0 + (1.370705 * (v-128));
+        g = y0 - (0.698001 * (v-128)) - (0.337633 * (u-128));
+        b = y0 + (1.732446 * (u-128));
+
+        if(r > 255) r = 255;
+        if(g > 255) g = 255;
+        if(b > 255) b = 255;
+        if(r < 0) r = 0;
+        if(g < 0) g = 0;
+        if(b < 0) b = 0;
+        rgb_buffer[out++] = r;
+        rgb_buffer[out++] = g;
+        rgb_buffer[out++] = b;
+
+        r = y1 + (1.370705 * (v-128));
+        g = y1 - (0.698001 * (v-128)) - (0.337633 * (u-128));
+        b = y1 + (1.732446 * (u-128));
+
+        if(r > 255) r = 255;
+        if(g > 255) g = 255;
+        if(b > 255) b = 255;
+        if(r < 0) r = 0;
+        if(g < 0) g = 0;
+        if(b < 0) b = 0;
+        rgb_buffer[out++] = r;
+        rgb_buffer[out++] = g;
+        rgb_buffer[out++] = b;
+    }
+    return 0;
+}
+*/
+
+int convert_yuv_to_rgb_buffer(unsigned char *yuv_buffer_pointer,unsigned char *rgb_buffer)
+{
+    unsigned char *yuyv,*ptr;
+    int y, u, v;
+    int r, g, b;
+    int x,t,z;
+    
+    z=0;
+    yuyv = yuv_buffer_pointer;
+    ptr  = rgb_buffer;
+    
+    for(t=0;t<IMAGEHEIGHT;t++)
+    {
+      for(x=0;x<IMAGEWIDTH;x++)
+      {
+        if(!z)
+        {
+          y = yuyv[0]<<8;
+        }else
+        {
+          y = yuyv[2]<<8;
+        }
+        u=yuyv[1]-128;
+        v=yuyv[3]-128;
+        
+        r = (y+(359*v))>>8;
+        g = (y-(88*u)-(183*v))>>8;
+        b = (y+(454*u))>>8;
+        
+        *(ptr++) = (r>255)?255:((r<0)?0:r);
+        *(ptr++) = (g>255)?255:((g<0)?0:g);
+        *(ptr++) = (b>255)?255:((b<0)?0:b);
+        
+        if(z++)
+        {
+          z=0;
+          yuyv+=4;
+        }
+      }
+    }
+    
+    return 0;
+}
+
+void facedetection(unsigned char *rgb_buffer)
+{
+	Mat Qframe(IMAGEHEIGHT,IMAGEWIDTH,CV_8UC3,rgb_buffer);
+	char cmd[50]={0};
+	int flag=calculatorORleaf(&Qframe,cmd);
+	
+	if(flag==0)	
+	//脸部识别部分
+	{
+    Mat frame_gray;
+
+	  std::vector<Rect> faces;
+	  cvtColor(Qframe, frame_gray, CV_RGB2GRAY );
+	  equalizeHist( frame_gray, frame_gray );
+
+	  //-- Detect faces
+	  face_cascade.detectMultiScale( frame_gray, faces, 1.8, 2, 0|CV_HAAR_SCALE_IMAGE, Size(50, 50) );
+
+	  //-- Draw faces areas
+	  for(unsigned int i = 0; i < faces.size(); i++ )
+	  {
+       	Point center( (faces[i].x + faces[i].width*0.5), (faces[i].y + faces[i].height*0.5));
+      	ellipse(Qframe, center, Size( faces[i].width*0.5, faces[i].height*0.5), 0, 0, 360, Scalar( 0, 255, 0 ), 4, 8, 0);
+	  }
+     
+    //-- Release
+	  frame_gray.release();
+	}else
+	{
+	  //printf("cmd:%s\n",cmd);
+	  system(cmd);
+	}
+	
+  Qframe.release();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

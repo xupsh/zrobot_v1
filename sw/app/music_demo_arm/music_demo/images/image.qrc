@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/image">
+        <file>main1.png</file>
+        <file>piano.png</file>
+        <file>play.png</file>
+        <file>qidong.png</file>
+        <file>recoed.png</file>
+        <file>record2.png</file>
+        <file>sense.png</file>
+        <file>yuepu.png</file>
+    </qresource>
+</RCC>

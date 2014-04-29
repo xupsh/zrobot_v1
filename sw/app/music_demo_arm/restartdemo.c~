@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+
+int main(int argc,char **argv)
+{
+  pid_t child_id;
+  
+  if(argc<2)
+  {
+    printf("Usage of restartdemo:restartdemo demoname!\n");
+    exit(0);
+  }
+  
+  while(1)
+  {
+    child_id = fork();
+    if(child_id<0)
+    {
+      printf("Create child process wrong!n")
+    }
+  
+  }
+  exit(0);
+}
+
