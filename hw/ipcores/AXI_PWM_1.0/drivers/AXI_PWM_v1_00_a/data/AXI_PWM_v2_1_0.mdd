@@ -1,0 +1,10 @@
+
+
+OPTION psf_version = 2.1.0;
+
+BEGIN DRIVER AXI_PWM
+	OPTION supported_peripherals = (AXI_PWM);
+	OPTION depends = (common_v1_00_a);
+	OPTION copyfiles = all;
+
+END DRIVER
