@@ -1,0 +1,1 @@
+cmd_/root/build/zrobot_v1/sw/driver/pwmdriver.ko := arm-xilinx-linux-gnueabi-ld -EL -r  -T /home/zulongp/build/linux-xlnx/scripts/module-common.lds --build-id  -o /root/build/zrobot_v1/sw/driver/pwmdriver.ko /root/build/zrobot_v1/sw/driver/pwmdriver.o /root/build/zrobot_v1/sw/driver/pwmdriver.mod.o

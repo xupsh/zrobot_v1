@@ -5,7 +5,7 @@
 #include <asm/io.h>
 
 #define DEVICE_NAME "device"
-#define MYPWM_PHY_ADDR 0x6CA00000
+#define MYPWM_PHY_ADDR 0x43c00000
 #define MYGPIO_PHY_ADDR 0x41200000
 
 MODULE_AUTHOR("zlpan");
