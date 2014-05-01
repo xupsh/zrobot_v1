@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/FrameLayout1"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+	<!-- 视频显示空间 -->
+    <ImageView
+        android:id="@+id/imageView_camera"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="fill"
+        android:scaleType="fitXY"
+        android:src="@drawable/zynq_logo" />
+
+    <RelativeLayout
+        android:id="@+id/RelativeLayout1"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom" >
+
+        <com.MobileAnarchy.Android.Widgets.Joystick.JoystickView
+            android:id="@+id/joystickView"
+            android:layout_width="175dp"
+            android:layout_height="175dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true" />
+		<!--  -->
+        <com.MobileAnarchy.Android.Widgets.Joystick.JoystickView
+            android:id="@+id/joystickARM"
+            android:layout_width="175dp"
+            android:layout_height="175dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true" /> 
+          
+
+        <Button
+            android:id="@+id/button_video"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="5dip"
+            android:text="@string/button_video_start" />
+
+        <Button
+            android:id="@+id/button_image"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/button_video"
+            android:layout_alignLeft="@id/button_video"
+            android:layout_alignParentRight="true"
+            android:enabled="false"
+            android:text="@string/button_image"
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/button_video_src"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/button_video"
+            android:layout_marginRight="5dp"
+            android:layout_toLeftOf="@id/button_video"
+            android:text="@string/button_video_src_car" />
+
+        <Button
+            android:id="@+id/button_laser_ctrl"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/button_video_src"
+            android:layout_marginRight="5dp"
+            android:layout_toLeftOf="@id/button_video_src"
+            android:text="@string/button_laser_on"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/button_control"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/button_laser_ctrl"
+            android:layout_marginRight="5dp"
+            android:layout_toLeftOf="@id/button_laser_ctrl"
+            android:text="@string/button_autocontrol"
+            android:visibility="visible" />
+
+        <Button
+            android:id="@+id/button_connect"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/button_control"
+            android:layout_marginRight="5dp"
+            android:layout_toLeftOf="@id/button_control"
+            android:text="@string/button_connect"
+            android:visibility="visible" />
+    </RelativeLayout>
+
+    <TableLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:layout_marginTop="10dip"
+        android:background="@android:color/transparent" >
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/TextViewAngle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="Angle"
+                android:textColor="#CC0000"
+                android:textSize="25sp"
+                android:visibility="invisible" >
+            </TextView>
+
+            <TextView
+                android:id="@+id/TextViewX"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text=""
+                android:textColor="#669900"
+                android:textSize="25sp"
+                android:visibility="invisible" >
+            </TextView>
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/TextViewSpeed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text="Speed"
+                android:textColor="#CC0000"
+                android:textSize="25sp"
+                android:visibility="invisible" >
+            </TextView>
+
+            <TextView
+                android:id="@+id/TextViewY"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:text=""
+                android:textColor="#669900"
+                android:textSize="25sp"
+                android:visibility="invisible" >
+            </TextView>
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/TextViewTCPStateTxt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:gravity="center"
+                android:text="Robot "
+                android:textColor="#CC0000"
+                android:textSize="15sp" >
+            </TextView>
+
+            <TextView
+                android:id="@+id/TextViewTCPState"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:gravity="center"
+                android:text="@string/tcpstate_offline"
+                android:textColor="#CC0000"
+                android:textSize="15sp" >
+            </TextView>
+        </TableRow>
+    </TableLayout>
+
+</FrameLayout>

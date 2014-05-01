@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:background="#0099cc"
+    >
+    <TextView
+        android:id="@+id/loginView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="@string/login_tip"
+        android:textColor="#33b5e5"
+        android:textSize="50sp"
+        android:textStyle="bold" />
+    <Button android:id="@+id/zynq_demo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/start_zynq_demo"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="25dp"
+        android:layout_marginLeft="20dp"
+        android:background="@drawable/shape"
+        android:textColor="#33b5e5"
+        />
+    <Button
+        android:id="@+id/n3_n4_demo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/zynq_demo"
+        android:layout_alignBottom="@+id/zynq_demo"
+        android:layout_marginLeft="25dp"
+        android:layout_toRightOf="@+id/zynq_demo"
+        android:text="@string/start_n3_4_demo" 
+        android:background="@drawable/shape"
+        android:textColor="#33b5e5"/>
+</RelativeLayout>

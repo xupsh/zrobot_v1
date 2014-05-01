@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, ZRobot!</string>
+    <string name="app_name">ZRobot_v1</string>
+    <string name="videoaddr1">carvideoaddr</string>
+    <string name="videoaddr2">armvideoaddr</string>
+    <string name="videoaddr3">opencvvideoaddr</string>
+    <string name="distipaddr">distipaddr</string>
+    <string name="disttcpport">disttcpport</string>
+    <string name="tcpstate_online">Online</string>
+    <string name="tcpstate_offline">Offline</string>
+    
+    
+    <string name="login_tip">ZRobot.org\nSmartCar</string>
+    <string name="start_zynq_demo">start_zynq_demo</string>
+    <string name="start_n3_4_demo">start_n3/n4_demo</string>
+    
+    
+    <!--  DeviceListActivity -->
+    <string name="scanning">scanning for devices...</string>
+    <string name="select_device">select a device to connect</string>
+    <string name="none_paired">No devices have been paired</string>
+    <string name="none_found">No devices found</string>
+    <string name="title_paired_devices">Paired Devices</string>
+    <string name="title_other_devices">Other Available Devices</string>
+    <string name="button_scan">Scan for devices</string>
+
+</resources>

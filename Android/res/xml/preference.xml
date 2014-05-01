@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory android:title="Net Settings" >
+        <EditTextPreference
+            android:defaultValue="http://192.168.1.100:8080/?action=stream"
+            android:key="@string/videoaddr1"
+            android:summary="Set Car Video Address"
+            android:title="Car Video Address" />
+        <EditTextPreference
+            android:defaultValue="http://192.168.1.100:8090/?action=snapshot"
+            android:key="@string/videoaddr2"
+            android:summary="Set ARM Video Address"
+            android:title="ARM Video Address " />
+        <EditTextPreference
+            android:defaultValue="http://192.168.1.100/detection.jpg"
+            android:key="@string/videoaddr3"
+            android:summary="Set OpenCV Video Address"
+            android:title="OpenCV Video Address" />
+        <EditTextPreference
+            android:defaultValue="192.168.1.100"
+            android:enabled="true"
+            android:key="@string/distipaddr"
+            android:summary="Set Host Board IP Address"
+            android:title="Host IP" />
+        <EditTextPreference
+            android:defaultValue="2001"
+            android:enabled="true"
+            android:key="@string/disttcpport"
+            android:summary="Set Host Board TCP Server Port"
+            android:title="TCP Server Port" />
+    </PreferenceCategory>
+
+</PreferenceScreen>

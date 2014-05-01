@@ -1,0 +1,16 @@
+<resources>
+
+    <string name="button_image">Image</string>
+    <string name="button_video_src_none">NONE</string>
+    <string name="button_video_src_car"> CAR  </string>
+    <string name="button_video_src_arm"> ARM  </string>
+    <string name="button_video_src_opencv">OPENCV</string>
+    <string name="button_laser_on">LASER ON</string>
+    <string name="button_laser_off">LASER OFF</string>
+    <string name="button_video_start">Video Start</string>
+    <string name="button_video_stop">Video Stop</string>
+    <string name="button_realcontrol">Manual</string>
+    <string name="button_autocontrol"> Auto </string>
+    <string name="button_connect">Connect</string>
+
+</resources>
