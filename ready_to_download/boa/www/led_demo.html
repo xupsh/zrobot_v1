@@ -1,0 +1,96 @@
+<html>
+<head>
+<title>ZedBoard LED Control Demo</title>
+<http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+</head>
+<body>
+
+
+<div align="center" ><h1>LED Web Control Demo </h1></div>
+<div align="center"> <img src="xlogo_bg.png" alt=
+"Xlinx XUP Embedded Websever"> <img src="logo_ZB.png" alt=
+"Xlinx ZedBoard logo"> </div>
+<ul><p>
+<br></p>
+<div align="center">
+<b> You can control LEDs on ZedBoard by following buttons.</b></div><br>
+
+<iframe name="server" style="display:none;" src=''></iframe> 
+<div align="center">
+
+<table>
+<tr>
+ <td>
+<form action="/cgi-bin/led_demo/led1_on.sh" method="send" target="server"> 
+<INPUT type=submit VALUE=" LED_1 ON" onclick="alert('LED 1 ON');">
+</form>
+</td>
+
+<td>
+<form action="/cgi-bin/led_demo/led2_on.sh" method="get" target="server"> 
+<INPUT type=submit VALUE=" LED_2 ON" onclick="alert('LED 2 ON');">
+</form>
+</td>
+
+<td><form action="/cgi-bin/led_demo/led3_on.sh" method="get" target="server"> 
+<INPUT type=submit VALUE=" LED_3 ON" onclick="alert('LED 3 ON');">
+</form>
+</td>
+
+<td><form action="/cgi-bin/led_demo/led4_on.sh" method="get" target="server"> 
+<INPUT type=submit VALUE=" LED_4 ON" onclick="alert('LED 4 ON');">
+</form>
+</td>
+
+</tr>
+
+<tr>
+
+<td>
+<form action="/cgi-bin/led_demo/led1_off.sh" method="get" target="server"> 
+<INPUT type=submit VALUE="LED_1 OFF" onclick="alert('LED 1 OFF');">
+</form>
+</td>
+
+<td>
+<form action="/cgi-bin/led_demo/led2_off.sh" method="get" target="server"> 
+<INPUT type=submit VALUE="LED_2 OFF" onclick="alert('LED 2 OFF');">
+</form>
+</td>
+
+<td>
+<form action="/cgi-bin/led_demo/led3_off.sh" method="get" target="server"> 
+<INPUT type=submit VALUE="LED_3 OFF" onclick="alert('LED 3 OFF');">
+</form>
+</td>
+
+<td>
+<form action="/cgi-bin/led_demo/led4_off.sh" method="get" target="server"> 
+<INPUT type=submit VALUE="LED_4 OFF" onclick="alert('LED 4 OFF');">
+</form>
+</td>
+
+</tr>
+
+</table>
+
+
+
+
+<p> 
+<br>
+If you have any question please feel free to sent me an Email:zhou.jiang@xilinx.com<br>
+<br>
+Thank you so much !<br>
+Boat<br>
+
+<li><a href="/home.html">
+	Back to home</a>
+</ul>
+</div>
+
+</body>
+
+</html>
+
+

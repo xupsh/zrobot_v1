@@ -1,0 +1,19 @@
+<html>
+<head><title>Demo of VLC mozilla plugin</title></head>
+
+<body>
+
+<h1>Demo of VLC mozilla plugin - Example 1</h1>
+
+<embed type="application/x-vlc-plugin"
+         name="video1"
+         autoplay="yes" loop="no" width="320" height="240"
+		 target="http://172.16.75.118:8080/stream.flv" />
+<br />
+  <a href="javascript:;" onclick='document.video1.play()'>Play video1</a>
+  <a href="javascript:;" onclick='document.video1.pause()'>Pause video1</a>
+  <a href="javascript:;" onclick='document.video1.stop()'>Stop video1</a>
+  <a href="javascript:;" onclick='document.video1.fullscreen()'>Fullscreen</a>
+
+</body>
+</html>

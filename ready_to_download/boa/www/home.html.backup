@@ -1,0 +1,46 @@
+<html>
+<head>
+<title>ZedBoard WebServer Demo</title>
+</head>
+<body>
+	<center>
+<h1>ZedBoard WebServer Demo Page</h1>
+<img src="xlogo_bg.png" alt=
+"Xlinx XUP Embedded Websever"> 
+<img src="logo_ZB.png" alt=
+"Xlinx ZedBoard logo"> 
+<ul>
+<p>
+<br>
+<p>
+
+    <li> <a href="http://zedboard.org/">
+         Link to the ZedBoard.org</a>
+<p>       
+<br>
+<p>
+    <li> <a href="/led_demo.html">
+		LED Demo page</a>
+<p>    
+
+<br>
+<p>
+   <li> <a href="/cgi-bin/LR_demo.cgi">
+        Leaf Recognition Demo </a>
+<p>
+<br>
+<p>
+    <li> <a href="http://192.168.1.100:8080/?action=stream">
+         WebCam Demo page</a>
+<p> 
+<br>
+<p>
+    <li> <a href="/xup_car.html">
+		XUP Car Demo page</a>
+<p> 
+
+<br>
+</ul>
+</center>
+</body>
+</html>

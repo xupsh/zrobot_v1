@@ -1,0 +1,119 @@
+<html>
+<head>
+<title>ZedBoard LED Control Demo</title>
+</head>
+<body>
+<h1>LED Control Demo Page</h1>
+<img src="xlogo_bg.png" alt=
+"Xlinx XUP Embedded Websever">
+<img src="logo_ZB.png" alt=
+"Xlinx ZedBoard logo"> 
+<ul>
+<p>
+<br>
+<p>
+You can control LEDs on ZedBoard by following buttons.<br>
+
+<button onclick="alert('LED 1 ON');" method="post">
+<INPUT TYPE=submit value="LED 1">
+<INPUT action="/cgi-bin/echo.sh">
+	</button>
+
+<button type=button onclick="alert('LED 2 ON');" action="/cgi-bin/echo.sh" method="post">
+	LED 2
+	</button>
+
+<button type="button" onclick="alert('LED 3 ON');" name="workspace">
+	LED 3
+	</button>
+
+<button type="button" onclick="alert('LED 4 ON');" name="workspace">
+	LED 4
+	</button>
+
+<button type="button" onclick="alert('LED 5 ON');" name="workspace">
+	LED 5
+	</button>
+
+<button type="button" onclick="alert('LED 6 ON');" name="workspace">
+	LED 6
+	</button>
+
+
+  <li> <a href="/cgi-bin/led_demo/led1_on.sh">
+       	led1_on</a>
+  <li> <a href="/cgi-bin/led_demo/led1_off.sh">
+        led1_off</a>
+<p> 
+
+<br>
+
+  <li> <a href="/cgi-bin/led_demo/led2_on.sh">
+        led2_on</a>
+  <li> <a href="/cgi-bin/led_demo/led2_off.sh">
+        led2_off</a>
+<p> 
+
+<br>
+
+  <li> <a href="/cgi-bin/led_demo/led3_on.sh">
+        led3_on</a>
+  <li> <a href="/cgi-bin/led_demo/led3_off.sh">
+        led3_off</a>
+<p> 
+
+<br>
+
+  <li> <a href="/cgi-bin/led_demo/led4_on.sh">
+         led4_on</a>
+  <li> <a href="/cgi-bin/led_demo/led4_off.sh">
+         led4_off</a>
+<p> 
+
+<br>
+
+  <li> <a href="/cgi-bin/led_demo/led5_on.sh">
+         led5_on</a>
+  <li> <a href="/cgi-bin/led_demo/led5_off.sh">
+         led5_off</a>
+<p> 
+
+<br>
+
+  <li> <a href="/cgi-bin/led_demo/led6_on.sh">
+         led6_on</a>
+  <li> <a href="/cgi-bin/led_demo/led6_off.sh">
+         led6_off</a>
+<p> 
+
+<br>
+
+  <li> <a href="/cgi-bin/led_demo/led7_on.sh">
+         led7_on</a>
+  <li> <a href="/cgi-bin/led_demo/led7_off.sh">
+         led7_off</a>
+<p> 
+
+<br>
+
+  <li> <a href="/cgi-bin/led_demo/led8_on.sh">
+         led8_on</a>
+  <li> <a href="/cgi-bin/led_demo/led8_off.sh">
+         led8_off</a>
+<p> 
+
+<br>
+
+<FORM ACTION=/cgi-bin/led_test.sh METHOD=POST> 
+<INPUT TYPE=submit VALUE=OK>
+</FORM> 
+
+<p> 
+We will add more features on this page :)
+<br>
+If you have any question please feel free to sent me an Email:zhou.jiang@xilinx.com<br>
+Thank you so much !<br>
+Boat<br>
+</ul>
+</body>
+</html>
