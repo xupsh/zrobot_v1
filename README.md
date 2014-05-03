@@ -50,4 +50,11 @@ zrobot
 * 关于pwm控制模块，请参考hw/ipcores目录下的AXI_PWM_1.0/，请仔细阅读其HDL代码。
 
 ## Buiding Software
-在zrobot_v1/sw/app/文件夹下是本工程要用到的一些应用程序，其中mjpeg_face_leaf_detection文件夹下是将Opencv树叶识别加入到mjpg程序中的一个demo; music_demo_arm文件夹下是在zedboard下使用QT实现的一个音乐应用;smart_car_CGI是一些从网页控制小车的接口;smart_car_webpage是我们自己做个一个控制小车的页面;这里我们主要关心的是smart_car_socket文件夹，这里面主要是一个socket服务器，不断的监听来自android手机的请求， 并解析请求数据包， 进而调用xil_io中的io函数， 直接对小车进行控制。 
+在zrobot_v1/sw/app/文件夹下是本小车相关的一些应用程序。
+* 其中mjpeg_face_leaf_detection文件夹下是将Opencv树叶识别加入到mjpg程序中的一个demo; 
+* m usic_demo_arm文件夹下是在zedboard下使用QT实现的一个音乐应用;
+* smart_car_CGI是一些从网页控制小车的接口;
+* smart_car_webpage是我们自己做个一个控制小车的页面;
+
+这里我们主要关心的是smart_car_socket文件夹，这里面主要是一个socket服务器，不断的监听来自android手机的请求， 并解析请求数据包， 进而调用xil_io.h中的io函数， 直接对vivado工程中定义的小车寄存器进行控制进行控制。 
+
