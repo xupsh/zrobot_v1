@@ -26,5 +26,12 @@ zrobot
   $sudo apt-get install git
   ```
 关于git的详细介绍请参考:http://git-scm.com/  
-
+本工程的软件程序使用交叉编译的方式在ubuntu虚拟机中进行开发， 使用如下命令构建交叉编译环境。
+  ```
+  $cd ~
+  $git clone https://github.com/xupsh/CodeSoucery.git
+  $echo “export PATH=~/CodeSourcery/bin:$PATH” >>  ~/.bashrc
+  $echo “export CROSS_COMPILE=arm-xilinx-linux-gnueabi-“ >> ~/.bashrc
+  ```
+  
 # build hw
