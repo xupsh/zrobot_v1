@@ -40,7 +40,7 @@ zrobot
 * 打开Vivado2013.4 软件。
 * 在Vivado软件的下方TCL窗口中，输入如下命令构建硬件工程。具体过程， 请阅读相关的tcl文件命令。  
   ```
-  $cd C:\hw\vivado\
+  $cd C:\hw\vivado\  
   $source system_project.tcl
   ```
 * 等待工程构建结束， 这一过程大约需要30分钟左右。
