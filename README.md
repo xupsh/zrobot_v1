@@ -73,14 +73,16 @@ BOOT.bin文件是系统的启动镜像， 它由三个文件组成，第一个�
   ```
 
 ## Booting on Linux
-对于如何编译uboot、uImage、uramdisk.image.gz以及devicetree.dtb就不在进行讲解了， 具体请参考嵌入式系统软硬件系统设计实战指南或者Xilinx wiki:   
-http://www.wiki.xilinx.com/Getting+Started   
+对于如何编译uboot、uImage、uramdisk.image.gz以及devicetree.dtb就不在进行讲解了， 具体请参考嵌入式系统软硬件系统设计实战指南或者Xilinx wiki: http://www.wiki.xilinx.com/Getting+Started   
 这里注意一点的是， 在编译uImage的时候， 由于要加入对v4l2的支持， 所以请使用source文件夹下的xup_zed_defconfig文件对内核进行配置，可以直接将该文件拷贝到内核源码根目录，并将其重命名为.config，然后再对内核进行编译;  
-对于devicetree.dtb的制作， 请使用source目录下的zrobot_v1_1.dts文件，该文件在SDK中生成， 关于如何在SDK中生成devicetree.dts请参考：  
-http://www.wiki.xilinx.com/Build+Device+Tree+Blob  
-在ready_to_download文件夹下是一个可以运行的完整系统， 请仔细阅读该文件夹下的init.sh文件， 该文件描述了如何对系统相关的服务进行启动。  
-将ready_to_download文件夹下的所有的文件复制到SD卡的FAT分区， 设置ZedBoard跳线从SD卡启动。观察串口打印信息。  
+对于devicetree.dtb的制作， 请使用source目录下的zrobot_v1_1.dts文件，该文件在SDK中生成， 关于如何在SDK中生成devicetree.dts请参考：http://www.wiki.xilinx.com/Build+Device+Tree+Blob  
+在ready_to_download文件夹下是一个可以运行的完整系统， 请仔细阅读该文件夹下的init.sh文件， 该文件描述了如何对系统相关的服务进行启动。如果你是自己来进行构建系统， 请参照该文件来对你自己的系统进行初始化。  
+将ready_to_download文件夹下的所有的文件复制到SD卡的FAT分区， 设置ZedBoard跳线从SD卡启动，启动linux,观察串口打印信息。  
 
 ## Building Android
 对于android环境的搭建请参考:http://developer.android.com/index.html  
-打开eclipse， 将该工程导入到工作空间， 系统会自动进行编译， 将程序下载到android 手机，点击Connect按钮建立TCP连接， 进而通过相关的摇杆对小车进行控制，你还可以点击Video查看小车视频。这里需要注意的是手机的android版本应该在2.2以上、4.2以下。当然， 在android\bin\目录下已经存在编译好的apk文件， 你可以直接下载到你的手机中进行运用。
+打开eclipse， 将该工程导入到工作空间， 系统会自动进行编译， 将程序下载到android 手机，点击Connect按钮建立TCP连接， 进而通过相关的摇杆对小车进行控制，你还可以点击Video查看小车视频。这里需要注意的是手机的android版本应该在2.2以上、4.2以下。当然， 在android\bin\目录下已经存在编译好的apk文件， 你可以直接下载到你的手机中进行运用。  
+你可以到src目录中查看相关的源码， 并根据你自己的需求进行改动， 当然， 我们必须确定服务器端有相应的服务， 否则，客户端的请求将不会得到应答。
+
+## 总结
+这里我们只是给出了一个大体的构建过程。由于时间关系，有些地方描述得还不怎么清楚，给出的代码中还有很多地方没有加入注释， 不过我们会不断的对该工程进行维护和更新。我们给出的只能是一个参考设计， 详细的设计还需要你自己来完成。我们会在近期推出，嵌入式系统软硬件协同设计实战指南的第二版本， 在书中， 我们会对本小车的一些细节进行描述， 并对如何进行Vivado设计进行详细的讲解， 敬请期待。
