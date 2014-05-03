@@ -18,6 +18,7 @@ zrobot
   https://www.virtualbox.org/  
 在Ubuntu虚拟机中， 使用git命令将工程clone到你的本地目录中  
   ```
+  $cd ~
   $git clone https://github.com/xupsh/zrobot_v1.git
   ```
 如果你还没有安装git命令，使用如下命令进行安装：  
@@ -33,5 +34,5 @@ zrobot
   $echo “export PATH=~/CodeSourcery/bin:$PATH” >>  ~/.bashrc
   $echo “export CROSS_COMPILE=arm-xilinx-linux-gnueabi-“ >> ~/.bashrc
   ```
-  
+关于构建工程目录：如果没有特殊说明， 在windows下的工程都默认放到C盘， 在虚拟机中默认放到用户根目录(~)中。
 # build hw
