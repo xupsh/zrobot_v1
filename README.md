@@ -39,10 +39,12 @@ zrobot
 * 将hw目录从虚拟机中拷贝到为windows C盘根目录。
 * 打开Vivado2013.4 软件。
 * 在Vivado软件的下方TCL窗口中，输入如下命令构建硬件工程。具体过程， 请阅读相关的tcl文件命令。  
+ 
   ```
-  $cd C:\hw\vivado\  
+  $cd C:\hw\vivado\    
   $source system_project.tcl
   ```
+
 * 等待工程构建结束， 这一过程大约需要30分钟左右。
 * 当工程构建结束， 在C:\hw\vivado目录下已经生成了一个完整的工程，包括系统bit文件，以及硬件导入到SDK的目录等。
 * 打开SDK软件， 将workplace定位到/path/zrobot_v1.sdk/SDK/SDK_Export目录，对硬件工程进行测试.
