@@ -1,0 +1,6 @@
+the_ROM_image:
+{
+	[bootloader]zrobot_v1_fsbl.elf
+	system_wrapper.bit
+	u-boot.elf
+}
