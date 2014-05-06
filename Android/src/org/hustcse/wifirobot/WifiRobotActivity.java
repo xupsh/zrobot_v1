@@ -11,6 +11,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
+import android.R.integer;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Dialog;
@@ -68,7 +69,8 @@ public class WifiRobotActivity extends Activity {
 	private SharedPreferences preferences;
 	
 	/* video stream */
-	DrawVideo m_DrawVideo;
+	//DrawVideo m_DrawVideo;
+	mjpeg_sreamer mjpg;
 
 	/* local dist tcp addr and port*/
 	private String dist_tcp_addr;
@@ -745,9 +747,11 @@ public class WifiRobotActivity extends Activity {
 				video_ready_flag = (Boolean) (msg.obj);
 				if (video_ready_flag == true) {
 					img_camera.setImageBitmap(img_camera_bmp);
-					m_DrawVideo = new DrawVideo(cur_video_addr,
-							mHandler_video_process);
-					m_DrawVideo.start();
+					mjpg = new mjpeg_sreamer(cur_video_addr, mHandler_video_process);
+					mjpg.start();
+					//m_DrawVideo = new DrawVideo(cur_video_addr,
+					//		mHandler_video_process);
+					//m_DrawVideo.start();
 					btn_video.setText(R.string.button_video_stop);
 					video_flag = true;
 				} else {
@@ -890,8 +894,8 @@ public class WifiRobotActivity extends Activity {
 
 			// disp_toast(toast_str);
 			if (video_flag == true) {
-				if (m_DrawVideo != null) {
-					m_DrawVideo.exit_thread();
+				if (mjpg != null) {
+					mjpg.exit_thread();
 				}
 				btn_video.setText(R.string.button_video_start);
 				img_camera.setImageResource(R.drawable.zynq_logo);
@@ -933,8 +937,8 @@ public class WifiRobotActivity extends Activity {
 				cur_video_addr = video_addr[video_source_sel]; 
 				showDialog(VIDEOCAP_DIALOG_KEY);
 			} else {
-				if (m_DrawVideo != null) {
-					m_DrawVideo.exit_thread();
+				if (mjpg != null) {
+					mjpg.exit_thread();
 					// m_DrawVideo.stop();
 				}
 				btn.setText(R.string.button_video_start);
@@ -1257,6 +1261,7 @@ public class WifiRobotActivity extends Activity {
 			}
 		}
 	};
+	/*
 	class DrawVideo extends Thread {
 		private String m_video_addr = CAR_VIDEO_ADDR;
 		private Handler video_Handler;
@@ -1304,6 +1309,96 @@ public class WifiRobotActivity extends Activity {
 						&& (httpclient.getConnectionManager() != null)) {
 					httpclient.getConnectionManager().shutdown(); 
 				}
+				video_Handler.obtainMessage(MSG_VIDEO_END).sendToTarget();
+			}
+		}
+	}*/
+	class mjpeg_sreamer extends Thread{
+		
+		private String m_video_addr = CAR_VIDEO_ADDR;
+		private Handler video_Handler;
+		
+		private String server_ip="192.168.1.100";
+		private int server_port = 8080;
+		
+		private Socket socket;
+		private InputStream inputStream;
+		private OutputStream outputStream;
+		private PrintWriter out;
+		private MjpegInputStream jStream;
+		
+		Bitmap bitmap;
+		private boolean exit;
+		
+		public mjpeg_sreamer(String video_addr,Handler handler){
+			m_video_addr = video_addr;
+			video_Handler = handler;
+		}
+		
+		public void exit_thread()
+		{
+			exit = true;
+		}
+		
+		@Override
+		public void run()
+		{	
+			try {
+				//create socket connection
+				socket = new Socket(server_ip, server_port);
+				inputStream = socket.getInputStream();
+				outputStream = socket.getOutputStream();
+				//send http get requestCode
+				out = new PrintWriter(outputStream);
+				out.print("GET /?action=stream\r\n\r\n");
+				out.flush();
+				//wait for the http header response
+				byte[] http_head = new byte[1024];
+				inputStream.read(http_head);
+				String header = new String(http_head);
+				if(header.contains("200 OK"))
+				{
+					exit = false;
+				}
+				else {
+					exit = true;
+				}
+				//http ok, get the frame now
+				jStream = new MjpegInputStream(inputStream);
+				while(!exit){
+					img_camera_bmp = BitmapFactory.decodeByteArray(jStream.readMjpegFrame(), //the byte[]
+							0,  //start
+							jStream.mContentLength);//end
+					if (img_camera_bmp != null) {
+						video_Handler.obtainMessage(MSG_VIDEO_UPDATE)
+								.sendToTarget();
+					}
+					sleep(10); //sleep 10 ms
+				}
+			} catch(UnknownHostException e){
+				Log.e(TAG, "unkonw host");
+				video_Handler.obtainMessage(MSG_VIDEO_ERROR).sendToTarget();
+				return;
+			}catch (IOException e) {
+				// TODO: handle exception
+				Log.e(TAG, "socket error:" + e.getMessage());
+				video_Handler.obtainMessage(MSG_VIDEO_ERROR).sendToTarget();
+				return;
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				Log.e(TAG, "sleep error:" + e.getMessage());
+			}
+			finally{//close socket				
+				try {
+					if(socket != null)
+						socket.close();
+					if(jStream != null)
+						jStream.close();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				video_flag = false;
 				video_Handler.obtainMessage(MSG_VIDEO_END).sendToTarget();
 			}
 		}
